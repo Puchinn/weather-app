@@ -1,4 +1,4 @@
-import { location } from "./location.adapter";
-import { weather } from "./weather.adapter";
+import { current } from "./current.adapter";
+import { forecastday } from "./forecastday.adapter";
 
-export default { location, weather };
+export default { current, forecastday };
