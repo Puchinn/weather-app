@@ -1,19 +1,31 @@
 import weatherAdapters from "../adapters/index";
-import { base_url } from "../config/config";
+import apiServices from "./api.services";
 
 class WeatherServices {
   async current(userLocation) {
-    const data = await fetch(`${base_url}&q=${userLocation}&days=3`).then(
-      (res) => res.json()
-    );
-    const location = weatherAdapters.location(data);
-    const weather = weatherAdapters.weather(data);
+    const data = await apiServices.currentData(userLocation);
 
-    return {
-      city: location.city,
-      condition: weather.condition,
-      temp: weather.temp_c,
-    };
+    const currentData = weatherAdapters.current(data);
+    return currentData;
+  }
+
+  async today(userLocation) {
+    const data = await apiServices.todayData(userLocation);
+
+    const todayWeather = weatherAdapters.forecastday(
+      data.forecast.forecastday[0]
+    );
+
+    return todayWeather;
+  }
+
+  async next3Days(userLocation) {
+    const data = await apiServices.next3DaysData(userLocation);
+
+    const nextDays = data.forecast.forecastday.map((data) =>
+      weatherAdapters.forecastday(data)
+    );
+    return nextDays;
   }
 }
 
