@@ -11,7 +11,10 @@ function current(data) {
       feelslike_c: data.current.feelslike_c,
       vis_km: data.current.vis_km,
       uv_index: data.current.uv,
-      condition: data.current.condition.text,
+      condition: {
+        text: data.current.condition.text,
+        code: data.current.condition.code,
+      },
     },
   };
 }
