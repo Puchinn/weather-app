@@ -8,6 +8,7 @@ export default {
       "light-primary-dark": "#282828",
       "heavy-primary-dark": "#141414",
       "light-text": "#b8b8b8",
+      "primary-dark-hover": "#383838",
     },
   },
   plugins: [],
