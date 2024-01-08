@@ -7,7 +7,7 @@ function Search() {
           name="query"
           id="query"
           placeholder="Search for a location"
-          className="py-3 px-2 text-base border text-[#b8b8b8] border-[#393939] bg-[#141414] w-full rounded-md"
+          className="py-3 px-2 text-base border text-light-text border-primary-dark-hover bg-heavy-primary-dark w-full rounded-md"
         />
       </label>
     </form>
