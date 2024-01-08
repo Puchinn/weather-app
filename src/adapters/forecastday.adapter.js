@@ -26,7 +26,10 @@ function hour(hourObject) {
     time: hourObject.time.substring(11),
     temp_c: hourObject.temp_c,
     is_day: hourObject.is_day,
-    condition: hourObject.condition.text,
+    condition: {
+      text: hourObject.condition.text,
+      code: hourObject.condition.code,
+    },
     chance_of_rain: hourObject.chance_of_rain,
     uv_index: hourObject.uv,
   };
