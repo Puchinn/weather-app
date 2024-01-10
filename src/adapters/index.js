@@ -1,4 +1,4 @@
-import { current } from "./current.adapter";
-import { forecastday } from "./forecastday.adapter";
+import { current } from "./currentData.adapter";
+import { forecastday } from "./forecastData.adapter";
 
 export default { current, forecastday };
