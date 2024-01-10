@@ -12,17 +12,13 @@ function forecastday(forecastday) {
       uv_index: forecastday.day.uv,
     },
     hour: forecastday.hour.map((data) => hour(data)),
-    astro: astro(forecastday.astro),
+    astro: {
+      sunrise: forecastday.astro.sunrise,
+      sunset: forecastday.astro.sunset,
+    },
   };
 }
 export { forecastday };
-
-function astro(astroProperty) {
-  return {
-    sunrise: astroProperty.sunrise,
-    sunset: astroProperty.sunset,
-  };
-}
 
 function hour(hourObject) {
   return {
