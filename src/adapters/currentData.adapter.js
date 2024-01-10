@@ -1,6 +1,10 @@
 function current(data) {
   return {
-    location: location(data.location),
+    location: {
+      city: data.location.city,
+      region: data.location.region,
+      country: data.location.country,
+    },
     current: {
       time: data.location.localtime,
       temp_c: data.current.temp_c,
@@ -20,11 +24,3 @@ function current(data) {
 }
 
 export { current };
-
-function location(location) {
-  return {
-    city: location.name,
-    region: location.region,
-    country: location.country,
-  };
-}
