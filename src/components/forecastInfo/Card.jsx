@@ -1,15 +1,17 @@
-function Card() {
-  /*
-  TODO: add props, make component dinamic
-  */
+import { getIcon } from "../../utils/getIcon";
+
+function Card({ data }) {
+  const icon = getIcon(data?.condition?.code, data?.is_day);
+  const formatedDay = new Date(data.date).toUTCString().split(",")[0];
+
   return (
     <li className="flex justify-between items-center border-b border-b-light-primary-dark p-3 text-lg">
-      <p>Mon</p>
+      <p>{formatedDay}</p>
       <p>
-        <span className="text-2xl">☀️</span> Sunny
+        <span className="text-2xl">{icon}</span> {data.condition.text}
       </p>
       <p>
-        <span className="font-bold">36°C</span>/22°C
+        <span className="font-bold">{data.maxtemp_c}°C</span>/{data.mintemp_c}°C
       </p>
     </li>
   );

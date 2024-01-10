@@ -1,17 +1,14 @@
 import { Card } from "./Card";
 
-function Forecast() {
-  /*
-  TODO: add props, make component dinamic
-  */
+function Forecast({ data }) {
+  const cards = data.map((card) => (
+    <Card key={card.dayInfo.date} data={card.dayInfo}></Card>
+  ));
+
   return (
     <div className="max-w-lg py-2">
       <p className="font-bold">3-Day Forecast</p>
-      <ul>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-      </ul>
+      <ul>{cards}</ul>
     </div>
   );
 }
