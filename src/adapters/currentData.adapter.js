@@ -1,7 +1,7 @@
 function current(data) {
   return {
     location: {
-      city: data.location.city,
+      city: data.location.name,
       region: data.location.region,
       country: data.location.country,
     },
