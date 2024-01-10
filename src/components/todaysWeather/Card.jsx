@@ -1,12 +1,13 @@
-function Card() {
-  /*
-  TODO: add props, make component dinamic
-  */
+import { getIcon } from "../../utils/getIcon";
+
+function Card({ data = {} }) {
+  const icon = getIcon(data.condition.code, data.is_day);
+
   return (
     <li className="text-center space-y-2 rounded-md p-4 hover:bg-primary-dark-hover">
-      <p>06:00 AM</p>
-      <p className="text-3xl ">🌦️</p>
-      <p className="text-xl font-medium">25 °C</p>
+      <p>{data.time} hs</p>
+      <p className="text-4xl ">{icon}</p>
+      <p className="text-xl font-medium">{data.temp_c} °C</p>
     </li>
   );
 }
