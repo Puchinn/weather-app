@@ -18,6 +18,12 @@ class ApiServices {
       `${base_url}/forecast.json?key=${api_key}&q=${location}&days=3`
     ).then((res) => res.json());
   }
+
+  async searchLocation(location) {
+    return await fetch(
+      `${base_url}/search.json?key=${api_key}&q=${location}`
+    ).then((res) => res.json());
+  }
 }
 
 export default new ApiServices();
