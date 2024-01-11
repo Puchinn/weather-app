@@ -27,6 +27,13 @@ class WeatherServices {
     );
     return nextDays;
   }
+
+  async searchLocation(location) {
+    const data = await apiServices.searchLocation(location);
+    const formmatedData = data.map((result) => weatherAdapters.search(result));
+
+    return formmatedData;
+  }
 }
 
 export default new WeatherServices();
