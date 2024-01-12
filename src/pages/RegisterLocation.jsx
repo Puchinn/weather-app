@@ -1,6 +1,7 @@
 import { AutoComplete } from "../components/search/Autocomplete";
 import { useDispatch } from "react-redux";
 import { userSettingsActions } from "../redux/reducers/userSettings";
+import userSettingsLocalStorage from "../utils/userSettingsLocalStorage";
 
 function RegisterLocation() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function RegisterLocation() {
       country: targetValue.split("-")[1],
     };
     dispatch(userSettingsActions.setLocation(location));
+    userSettingsLocalStorage.setLocation(location);
   };
 
   return (
