@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import weatherServices from "../../services/weather.services";
 import { SuggestionList } from "./SuggestionList";
 
-function AutoComplete({ formAction, placeholder }) {
+function AutoComplete({ formAction, placeholder, children }) {
   const [inputValue, setInputValue] = useState("");
   const [dataList, setDataList] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
@@ -51,6 +51,8 @@ function AutoComplete({ formAction, placeholder }) {
       {dataList.length > 0 && inputValue && (
         <SuggestionList onClick={onClick} dataList={dataList}></SuggestionList>
       )}
+
+      {children}
     </form>
   );
 }
