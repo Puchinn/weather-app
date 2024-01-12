@@ -4,9 +4,9 @@ const userSettingsSlice = createSlice({
   name: "userSettings",
   initialState: {
     location: {
-      city: "Rio Segundo",
-      region: "Cordoba",
-      country: "Argentina",
+      city: "",
+      region: "",
+      country: "",
     },
     units: {},
     general: {},
@@ -17,6 +17,7 @@ const userSettingsSlice = createSlice({
         ...state,
         location: action.payload,
       };
+      return state;
     },
     setUnits(state, action) {
       state = {
@@ -29,6 +30,10 @@ const userSettingsSlice = createSlice({
         ...state,
         general: action.payload,
       };
+    },
+    setSettings(state, action) {
+      state = action.payload;
+      return state;
     },
   },
 });
