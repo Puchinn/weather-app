@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { currentWeatherActions } from "../redux/reducers/currentWeather";
-import { forecastWeatherActions } from "../redux/reducers/forecastWeather";
-import { todayWeatherActions } from "../redux/reducers/todayWeather";
 import weatherServices from "../services/weather.services";
+import { cards } from "../adapters/cards.adapter";
+import { timeLineWeather } from "../utils/timelineweather";
 
-function useFetchDataMain() {
+function useFetchDataMain({ userLocation }) {
   const [isLoadingData, setIsLoadingData] = useState(true);
-  const dispatch = useDispatch();
-  const { location } = useSelector((state) => state.userSettings);
-  const completeLocation = `${location.city}, ${location.region}`;
+  const completeLocation = `${userLocation.city}, ${userLocation.region}`;
+  const [data, setData] = useState({
+    current: {},
+    today: {},
+    forecast: {},
+  });
 
   useEffect(() => {
     Promise.all([
@@ -17,15 +18,37 @@ function useFetchDataMain() {
       weatherServices.today(completeLocation),
       weatherServices.next3Days(completeLocation),
     ]).then(([current, today, nextDays]) => {
-      dispatch(currentWeatherActions.setCurrent(current.current));
-      dispatch(currentWeatherActions.setLocation(current.location));
-      dispatch(todayWeatherActions.setState(today));
-      dispatch(forecastWeatherActions.setForecast(nextDays));
+      setData({
+        current,
+        today,
+        forecast: nextDays,
+      });
       setIsLoadingData(false);
     });
-  }, [completeLocation, dispatch]);
+  }, [completeLocation]);
 
-  return { isLoadingData };
+  if (isLoadingData) return { isLoadingData };
+
+  const { current, location } = data.current;
+  const { astro, hour } = data.today;
+  const forecastDays = data.forecast;
+  const timeNow = current?.time?.substring(11).split(":")[0];
+
+  const arrayToTodayWeather = timeLineWeather(timeNow, forecastDays);
+  const formatedArrayCards = cards({
+    ...current,
+    sunset: astro?.sunset,
+    chance_of_rain: hour[timeNow]?.chance_of_rain,
+  });
+
+  return {
+    isLoadingData,
+    current,
+    location,
+    arrayToTodayWeather,
+    formatedArrayCards,
+    forecastDays,
+  };
 }
 
 export { useFetchDataMain };
