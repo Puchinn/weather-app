@@ -41,6 +41,10 @@ function useFetchDataMain({ userLocation }) {
     chance_of_rain: hour[timeNow]?.chance_of_rain,
   });
 
+  const fullLocationAndDateString = `${completeLocation} - ${
+    userLocation.country
+  }. ${new Date(current.time).toDateString()}`;
+
   return {
     isLoadingData,
     current,
@@ -48,6 +52,7 @@ function useFetchDataMain({ userLocation }) {
     arrayToTodayWeather,
     formatedArrayCards,
     forecastDays,
+    fullLocationAndDateString,
   };
 }
 
