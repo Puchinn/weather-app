@@ -13,11 +13,10 @@ const userSettingsSlice = createSlice({
   },
   reducers: {
     setLocation(state, action) {
-      state = {
+      return {
         ...state,
         location: action.payload,
       };
-      return state;
     },
     setUnits(state, action) {
       state = {
@@ -32,7 +31,10 @@ const userSettingsSlice = createSlice({
       };
     },
     setSettings(state, action) {
-      state = action.payload;
+      state = {
+        ...state,
+        ...action.payload,
+      };
       return state;
     },
   },
