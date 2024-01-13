@@ -16,6 +16,7 @@ function Home() {
     formatedArrayCards,
     arrayToTodayWeather,
     forecastDays,
+    fullLocationAndDateString,
   } = useFetchDataMain({ userLocation: userLocation.location });
 
   /* TODO: add loading skeleton here... */
@@ -26,8 +27,12 @@ function Home() {
   return (
     <div className="grid grid-cols-12 gap-x-10 pb-10">
       <div className="col-span-7">
+        <h1 className="px-3 text-light-text">{fullLocationAndDateString}</h1>
         <MainInfo current={current} location={location}></MainInfo>
         <CurrentCardsList formatedArray={formatedArrayCards}></CurrentCardsList>
+        <p className="opacity-45 text-sm italic mt-3">
+          Last update: {current.last_updated}hs
+        </p>
       </div>
       <div className="col-span-5 space-y-5">
         <TodayCardsList arrayOfData={arrayToTodayWeather}></TodayCardsList>
