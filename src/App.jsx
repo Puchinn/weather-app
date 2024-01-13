@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { userSettingsActions } from "./redux/reducers/userSettings";
+import { useDispatch, useSelector } from "react-redux";
+import userSettingsLocalStorage from "./utils/userSettingsLocalStorage";
+
+import { AppLayout } from "./pages/layout/AppLayout";
+import { RegisterLocation } from "./pages/RegisterLocation";
+import { Home } from "./pages/Home";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+
+  const [isLogin, setIsLogin] = useState(false);
+  const state = useSelector((state) => state.userSettings);
+
+  useEffect(() => {
+    if (state.location.city.length > 0) {
+      return setIsLogin(true);
+    }
+    const userSettings = userSettingsLocalStorage.settings();
+    if (!userSettings.location) {
+      return setIsLogin(false);
+    } else {
+      dispatch(userSettingsActions.setSettings(userSettings));
+      setIsLogin(true);
+    }
+  }, [dispatch, state]);
+
+  if (!isLogin) {
+    return <RegisterLocation />;
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<Home />} />
+        <Route path="/search" element={<h1>here the searches c:</h1>}></Route>
+        <Route
+          path="/settings"
+          element={<h1>here go the configs c:</h1>}
+        ></Route>
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
