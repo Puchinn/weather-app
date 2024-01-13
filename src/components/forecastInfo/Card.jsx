@@ -1,7 +1,7 @@
 import { getIcon } from "../../utils/getIcon";
 
 function Card({ data }) {
-  const icon = getIcon(data?.condition?.code, data?.is_day);
+  const icon = getIcon(data?.condition?.code, true);
   const formatedDay = new Date(data.date).toUTCString().split(",")[0];
 
   return (
