@@ -4,17 +4,19 @@ import { CardList as TodayCardsList } from "../components/todaysWeather/CardList
 import { Forecast } from "../components/forecastInfo/Forecast";
 import { Clock } from "../components/Clock";
 import { useFetchDataMain } from "../hooks/useFetchDataMain";
-import { useDataMain } from "../hooks/useDataMain";
+import { useSelector } from "react-redux";
 
 function Home() {
-  const { isLoadingData } = useFetchDataMain();
+  const userLocation = useSelector((state) => state.userSettings);
+
   const {
+    isLoadingData,
     current,
     location,
     formatedArrayCards,
     arrayToTodayWeather,
     forecastDays,
-  } = useDataMain();
+  } = useFetchDataMain({ userLocation: userLocation.location });
 
   /* TODO: add loading skeleton here... */
   if (isLoadingData) {
