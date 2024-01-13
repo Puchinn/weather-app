@@ -2,6 +2,7 @@ import { AutoComplete } from "../components/search/Autocomplete";
 import { useDispatch } from "react-redux";
 import { userSettingsActions } from "../redux/reducers/userSettings";
 import userSettingsLocalStorage from "../utils/userSettingsLocalStorage";
+import weatherServices from "../services/weather.services";
 
 function RegisterLocation() {
   const dispatch = useDispatch();
@@ -9,13 +10,10 @@ function RegisterLocation() {
   const onSubmit = (e) => {
     e.preventDefault();
     const targetValue = e.target.queryText.value;
-    const location = {
-      city: targetValue.split(",")[0],
-      region: targetValue.split(",")[1].split("-")[0],
-      country: targetValue.split("-")[1],
-    };
-    dispatch(userSettingsActions.setLocation(location));
-    userSettingsLocalStorage.setLocation(location);
+    weatherServices.current(targetValue).then((res) => {
+      dispatch(userSettingsActions.setLocation(res.location));
+      userSettingsLocalStorage.setLocation(res.location);
+    });
   };
 
   return (
