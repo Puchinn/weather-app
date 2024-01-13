@@ -7,6 +7,7 @@ function current(data) {
     },
     current: {
       time: data.location.localtime,
+      last_updated: data.current.last_updated,
       temp_c: data.current.temp_c,
       is_day: data.current.is_day,
       wind_kph: data.current.wind_kph,
