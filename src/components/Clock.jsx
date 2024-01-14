@@ -12,7 +12,7 @@ function Clock({ initialTime }) {
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [initialTime]);
 
   const formattedTime = time.toLocaleTimeString().replaceAll(":", " | ");
 
