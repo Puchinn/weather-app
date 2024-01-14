@@ -33,10 +33,10 @@ function AutoComplete({ formAction, placeholder, children }) {
   }, [inputValue, selected]);
 
   return (
-    <form onSubmit={formAction}>
+    <form className="relative w-full mt-1" onSubmit={formAction}>
       <label htmlFor="queryText">
         <input
-          className="mt-1 w-full p-2 rounded-md placeholder:text-light-text text-light-text border-gray-200 bg-primary-dark"
+          className="py-3 px-2 text-base outline-none placeholder:text-light-text border text-light-text border-primary-dark-hover bg-heavy-primary-dark w-full rounded-md"
           type="text"
           id="queryText"
           name="queryText"

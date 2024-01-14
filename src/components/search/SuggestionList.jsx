@@ -4,7 +4,7 @@ function SuggestionList({ dataList = [], onClick }) {
   ));
 
   return (
-    <div className="py-1 bg-primary-dark overflow-y-scroll max-h-52 rounded-md mt-[2px]">
+    <div className="py-1 absolute border-x border-primary-dark-hover w-full bg-light-primary-dark overflow-y-auto max-h-40 rounded-md mt-[2px]">
       <ul className="space-y-1 py-2">{list}</ul>
     </div>
   );
