@@ -1,13 +1,6 @@
 const key = "weather-app-userSettings";
 
 class UserSettingsLocalStorage {
-  constructor() {
-    const hasSettings = this.settings();
-    if (!hasSettings) {
-      localStorage.setItem(key, JSON.stringify({}));
-    }
-  }
-
   settings() {
     const userSettings = JSON.parse(localStorage.getItem(key));
     return userSettings;
@@ -20,7 +13,7 @@ class UserSettingsLocalStorage {
       location: newLocation,
     };
     localStorage.setItem(key, JSON.stringify(newsSettings));
-    return userSettings;
+    return newsSettings;
   }
 
   setSettings(settings) {
