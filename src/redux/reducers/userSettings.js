@@ -10,6 +10,8 @@ const userSettingsSlice = createSlice({
     },
     units: {},
     general: {},
+    recentlySearched: [],
+    favorites: [],
   },
   reducers: {
     setLocation(state, action) {
@@ -36,6 +38,28 @@ const userSettingsSlice = createSlice({
         ...action.payload,
       };
       return state;
+    },
+    addToRecentlySearched(state, action) {
+      const alredyHaveTheLocation = state.recentlySearched.includes(
+        action.payload
+      );
+      if (alredyHaveTheLocation) {
+        return state;
+      }
+      if (state.recentlySearched.length + 1 > 5) {
+        const newState = [action.payload, ...state.recentlySearched];
+        newState.splice(5, 1);
+        return {
+          ...state,
+          recentlySearched: newState,
+        };
+      }
+      const newState = [...state.recentlySearched];
+      newState.unshift(action.payload);
+      return {
+        ...state,
+        recentlySearched: newState,
+      };
     },
   },
 });
