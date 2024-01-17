@@ -8,7 +8,24 @@ const userSettingsSlice = createSlice({
       region: "",
       country: "",
     },
-    units: {},
+    units: {
+      temperature: {
+        values: ["Celcius", "Fahrenheit", "Kelvin"],
+        active: "Celcius",
+      },
+      wind: {
+        values: ["km/h", "m/s", "knots"],
+        active: "km/h",
+      },
+      distance: {
+        values: ["Kilometers", "Miles"],
+        active: "Kilometers",
+      },
+      pressure: {
+        values: ["Pa", "hPa", "bar", "mb"],
+        active: "mb",
+      },
+    },
     general: {},
     recentlySearched: [],
     favorites: [],
@@ -60,6 +77,13 @@ const userSettingsSlice = createSlice({
         ...state,
         recentlySearched: newState,
       };
+    },
+
+    setActiveUnit(state, action) {
+      const { unit, newActive } = action.payload;
+      const findedUnit = Object.assign(state.units[unit]);
+      findedUnit.active = newActive;
+      state.units[unit] = findedUnit;
     },
   },
 });
