@@ -4,12 +4,12 @@ function Button({ onClick, value, active }) {
     onClick(value);
   };
 
+  const background = isActive ? "bg-[#000]" : "bg-light-primary-dark";
+
   return (
     <button
       onClick={setActive}
-      className={`py-1 w-full bg-${
-        isActive ? "[#000]" : "light-primary-dark"
-      } rounded-lg`}
+      className={`py-1 w-full ${background} rounded-lg`}
     >
       {value}
     </button>
