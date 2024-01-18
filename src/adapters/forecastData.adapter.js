@@ -15,6 +15,7 @@ function forecastday(forecastday) {
     astro: {
       sunrise: forecastday.astro.sunrise,
       sunset: forecastday.astro.sunset,
+      moon_phase: forecastday.astro.moon_phase,
     },
   };
 }
