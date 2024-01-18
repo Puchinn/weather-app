@@ -2,10 +2,12 @@ import weatherServices from "../../services/weather.services";
 import { getIcon } from "../../utils/getIcon";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTempUnit } from "../../hooks/useTempUnit";
 
 function ListItem({ location }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const { unit, value } = useTempUnit({ value: data.temp_c });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +33,10 @@ function ListItem({ location }) {
       <div>
         <h1 className="text-xl">{location}</h1>
         <p>{data.condition.text}</p>
-        <p className="text-2xl font-bold">{data.temp_c}°C </p>
+        <p className="text-2xl font-bold">
+          {value}
+          {unit}
+        </p>
       </div>
       <p className="text-5xl"> {icon} </p>
     </div>
