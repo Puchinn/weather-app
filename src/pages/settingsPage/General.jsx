@@ -3,6 +3,7 @@ import { AutoComplete } from "../../components/search/Autocomplete";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userSettingsActions } from "../../redux/reducers/userSettings";
+import { ToggleTimeFormat } from "./ToggleTimeFormat";
 import userSettingsLocalStorage from "../../utils/userSettingsLocalStorage";
 
 function General() {
@@ -69,18 +70,7 @@ function General() {
           )}
         </section>
         <div className="border-t my-3 border-primary-dark-hover"></div>
-        <section className="flex py-3 justify-between items-center">
-          <p className="font-bold">12-Hour Time Format</p>
-          <label className="relative inline-flex cursor-pointer items-center">
-            <input id="switch" type="checkbox" className="peer sr-only" />
-            <label htmlFor="switch" className="hidden"></label>
-            <div
-              className="peer h-6 w-11 rounded-full border bg-primary-dark after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5
-            after:bg-light-primary-dark
-            after:rounded-full after:border after:border-gray-300 peer-checked:after:bg-[#fff] after:transition-all after:content-[''] peer-checked:bg-heavy-primary-dark peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-green-300"
-            ></div>
-          </label>
-        </section>
+        <ToggleTimeFormat></ToggleTimeFormat>
       </div>
     </div>
   );
