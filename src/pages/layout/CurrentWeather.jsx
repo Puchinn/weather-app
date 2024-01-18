@@ -14,6 +14,7 @@ function CurrentWeather({ userLocation }) {
     arrayToTodayWeather,
     forecastDays,
     fullLocationAndDateString,
+    lastUpdate,
   } = useFetchDataMain({ userLocation: userLocation });
 
   /* TODO: add loading skeleton here... */
@@ -28,7 +29,7 @@ function CurrentWeather({ userLocation }) {
         <MainInfo current={current} location={location}></MainInfo>
         <CurrentCardsList formatedArray={formatedArrayCards}></CurrentCardsList>
         <p className="opacity-45 text-sm italic mt-3">
-          Last update: {current.last_updated}hs
+          Last update: {lastUpdate}
         </p>
       </div>
       <div className="col-span-5 space-y-5">
