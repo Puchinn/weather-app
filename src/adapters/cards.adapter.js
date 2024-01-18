@@ -54,6 +54,16 @@ function cards(current) {
       icon: "🌇",
       value: current.sunset,
     },
+    {
+      title: "Sunrise",
+      icon: "🌄",
+      value: current.sunrise,
+    },
+    {
+      title: "Moon Phase",
+      icon: "🌚",
+      value: current.moon_phase,
+    },
   ];
 }
 
