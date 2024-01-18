@@ -14,7 +14,7 @@ const userSettingsSlice = createSlice({
         active: "Celcius",
       },
       wind: {
-        values: ["km/h", "m/s", "knots"],
+        values: ["km/h", "m/s", "Knots"],
         active: "km/h",
       },
       distance: {
@@ -22,8 +22,8 @@ const userSettingsSlice = createSlice({
         active: "Kilometers",
       },
       pressure: {
-        values: ["Pa", "hPa", "bar", "mb"],
-        active: "mb",
+        values: ["Pascal", "atm", "psi", "bar", "mbar"],
+        active: "mbar",
       },
     },
     general: {},
