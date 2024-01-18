@@ -7,25 +7,31 @@ import userSettingsLocalStorage from "./utils/userSettingsLocalStorage";
 import { AppLayout } from "./pages/layout/AppLayout";
 import { RegisterLocation } from "./pages/RegisterLocation";
 import { Home } from "./pages/Home";
+import { SearchResult } from "./pages/SearchResult";
+import { Page as RecentlySearchedPage } from "./pages/recentlySearched/Page";
+import { Page as SettingsPage } from "./pages/settingsPage/Page";
 
 function App() {
   const dispatch = useDispatch();
-
   const [isLogin, setIsLogin] = useState(false);
   const state = useSelector((state) => state.userSettings);
 
   useEffect(() => {
-    if (state.location.city.length > 0) {
-      return setIsLogin(true);
-    }
     const userSettings = userSettingsLocalStorage.settings();
-    if (!userSettings.location) {
-      return setIsLogin(false);
-    } else {
+    if (userSettings) {
       dispatch(userSettingsActions.setSettings(userSettings));
       setIsLogin(true);
+    } else {
+      setIsLogin(false);
     }
-  }, [dispatch, state]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (state.location.city.length > 0) {
+      userSettingsLocalStorage.setSettings(state);
+      setIsLogin(true);
+    }
+  }, [state]);
 
   if (!isLogin) {
     return <RegisterLocation />;
@@ -35,11 +41,15 @@ function App() {
     <Routes>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
-        <Route path="/search" element={<h1>here the searches c:</h1>}></Route>
         <Route
-          path="/settings"
-          element={<h1>here go the configs c:</h1>}
+          path="/search"
+          element={<RecentlySearchedPage></RecentlySearchedPage>}
         ></Route>
+        <Route
+          path="/search/:query"
+          element={<SearchResult></SearchResult>}
+        ></Route>
+        <Route path="/settings" element={<SettingsPage></SettingsPage>}></Route>
       </Route>
     </Routes>
   );
