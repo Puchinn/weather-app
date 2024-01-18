@@ -20,9 +20,11 @@ class ApiServices {
   }
 
   async searchLocation(location) {
-    return await fetch(
+    const data = await fetch(
       `${base_url}/search.json?key=${api_key}&q=${location}`
-    ).then((res) => res.json());
+    );
+
+    return data.json();
   }
 }
 
