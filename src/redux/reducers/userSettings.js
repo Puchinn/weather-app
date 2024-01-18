@@ -26,7 +26,9 @@ const userSettingsSlice = createSlice({
         active: "mbar",
       },
     },
-    general: {},
+    general: {
+      "12-hour-timeformat": false,
+    },
     recentlySearched: [],
     favorites: [],
   },
@@ -78,12 +80,15 @@ const userSettingsSlice = createSlice({
         recentlySearched: newState,
       };
     },
-
     setActiveUnit(state, action) {
       const { unit, newActive } = action.payload;
       const findedUnit = Object.assign(state.units[unit]);
       findedUnit.active = newActive;
       state.units[unit] = findedUnit;
+    },
+    toggleTimeFormat(state) {
+      state.general["12-hour-timeformat"] =
+        !state.general["12-hour-timeformat"];
     },
   },
 });
