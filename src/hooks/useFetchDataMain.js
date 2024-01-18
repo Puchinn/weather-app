@@ -3,12 +3,17 @@ import weatherServices from "../services/weather.services";
 import { cards } from "../adapters/cards.adapter";
 import { timeLineWeather } from "../utils/timelineweather";
 import { useSelector } from "react-redux";
+import { timeFormat } from "../utils/timeFormat";
 import Qty from "js-quantities";
 
 function useFetchDataMain({ userLocation }) {
   const [isLoadingData, setIsLoadingData] = useState(true);
   const completeLocation = `${userLocation.city}, ${userLocation.region}`;
   const units = useSelector((state) => state.userSettings.units);
+  const shouldFormatHour = useSelector(
+    (state) => state.userSettings.general["12-hour-timeformat"]
+  );
+
   const [data, setData] = useState({
     current: {},
     today: {},
@@ -40,7 +45,23 @@ function useFetchDataMain({ userLocation }) {
   const arrayToTodayWeather = timeLineWeather(timeNow, forecastDays);
   const formatedArrayCards = cards({
     ...current,
-    sunset: astro?.sunset,
+    ...{
+      sunrise: shouldFormatHour
+        ? astro.sunrise
+        : new Date(`${current.time.split(" ")[0]} ${astro.sunrise}`)
+            .toLocaleTimeString("en-US", {
+              hour12: false,
+            })
+            .replace(":00", "") + " hs",
+      sunset: shouldFormatHour
+        ? astro.sunset
+        : new Date(`${current.time.split(" ")[0]} ${astro.sunset}`)
+            .toLocaleTimeString("en-US", {
+              hour12: false,
+            })
+            .replace(":00", "") + " hs",
+      moon_phase: astro.moon_phase,
+    },
     chance_of_rain: hour[timeNow]?.chance_of_rain,
   }).map((card) => {
     if (card.unitId === "temperature") {
@@ -79,6 +100,18 @@ function useFetchDataMain({ userLocation }) {
     userLocation.country
   }. ${new Date(current.time).toDateString()}`;
 
+  const lastUpdate = (() => {
+    if (!shouldFormatHour) {
+      return `${current.last_updated} hs`;
+    }
+    const formatSplit = timeFormat(new Date(current.last_updated)).split(":");
+    const dateAndFormat = `${current.time.split(" ")[0]} ${formatSplit[0]}:${
+      formatSplit[1]
+    } ${formatSplit[2].split(" ")[1]}`;
+
+    return dateAndFormat;
+  })();
+
   return {
     isLoadingData,
     current,
@@ -87,6 +120,7 @@ function useFetchDataMain({ userLocation }) {
     formatedArrayCards,
     forecastDays,
     fullLocationAndDateString,
+    lastUpdate,
   };
 }
 
