@@ -1,4 +1,4 @@
-function cards(current) {
+function currentDataToCardsList(current) {
   return [
     {
       title: "UV Index",
@@ -67,4 +67,4 @@ function cards(current) {
   ];
 }
 
-export { cards };
+export { currentDataToCardsList };
