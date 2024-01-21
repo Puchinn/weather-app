@@ -1,7 +1,7 @@
-import { Nav } from "../../components/navbar/Nav";
-import { AutoComplete } from "../../components/search/Autocomplete";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Nav } from "../navbar/Nav";
+import { AutoComplete } from "../search/Autocomplete";
 
 function AppLayout() {
   const navigate = useNavigate();
