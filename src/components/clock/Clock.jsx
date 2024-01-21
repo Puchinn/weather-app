@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { timeFormat } from "../utils/timeFormat";
+import { timeFormat } from "./timeFormat";
 import { useSelector } from "react-redux";
 
 function Clock({ initialTime }) {
