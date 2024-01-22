@@ -9,7 +9,7 @@ function RegisterLocation() {
 
   const formAction = (event) => {
     event.preventDefault();
-    const targetValue = formAction.target.queryText.value;
+    const targetValue = event.target.queryText.value;
     weatherServices.current(targetValue).then((data) => {
       dispatch(userSettingsActions.setLocation(data.location));
       userSettingsLocalStorage.setLocation(data.location);
