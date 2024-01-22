@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { userSettingsActions } from "../../redux/reducers/userSettings";
+import { userSettingsActions } from "../../../../redux/reducers/userSettings";
 
-function ToggleTimeFormat() {
+function ToggleHourFormat() {
   const dispatch = useDispatch();
   const is12hourFormat = useSelector(
     (state) => state.userSettings.general["12-hour-timeformat"]
@@ -33,4 +33,4 @@ function ToggleTimeFormat() {
   );
 }
 
-export { ToggleTimeFormat };
+export { ToggleHourFormat };

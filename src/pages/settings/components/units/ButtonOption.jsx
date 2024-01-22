@@ -1,7 +1,8 @@
-function Button({ onClick, value, active }) {
-  const isActive = active === value;
+function ButtonOption({ setActiveUnit, unitValue, activeUnit }) {
+  const isActive = activeUnit === unitValue;
+
   const setActive = () => {
-    onClick(value);
+    setActiveUnit(unitValue);
   };
 
   const background = isActive ? "bg-[#000]" : "bg-light-primary-dark";
@@ -11,9 +12,9 @@ function Button({ onClick, value, active }) {
       onClick={setActive}
       className={`py-1 w-full ${background} rounded-lg`}
     >
-      {value}
+      {unitValue}
     </button>
   );
 }
 
-export { Button };
+export { ButtonOption };

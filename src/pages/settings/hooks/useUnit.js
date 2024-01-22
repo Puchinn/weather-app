@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { userSettingsActions } from "../../../redux/reducers/userSettings";
 
-function useUnits({ id }) {
+function useUnit({ unitId }) {
   const dispatch = useDispatch();
-  const selectedUnit = useSelector((state) => state.userSettings.units[id]);
+  const selectedUnit = useSelector((state) => state.userSettings.units[unitId]);
   const activeValue = selectedUnit.active;
   const values = selectedUnit.values;
 
   const setActive = (newValue) => {
     dispatch(
       userSettingsActions.setActiveUnit({
-        unit: id,
+        unit: unitId,
         newActive: newValue,
       })
     );
@@ -19,4 +19,4 @@ function useUnits({ id }) {
   return { activeValue, values, setActive };
 }
 
-export { useUnits };
+export { useUnit };
