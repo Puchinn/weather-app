@@ -1,18 +1,15 @@
-import { CurrentWeather } from "./layout/CurrentWeather";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { userSettingsActions } from "../redux/reducers/userSettings";
+import { userSettingsActions } from "../../redux/reducers/userSettings";
+import { HomeLayout } from "../home/HomeLayout";
+import locationUtil from "../../utils/location";
 
-function SearchResult() {
+function SearchedLocation() {
   const dispatch = useDispatch();
   const { query } = useParams();
-  const location = {
-    city: query.split(",")[0],
-    region: query.split(",")[1].split("-")[0],
-    country: query.split("-")[1],
-  };
+  const location = locationUtil.stringToObject(query);
 
   useEffect(() => {
     dispatch(userSettingsActions.addToRecentlySearched(query));
@@ -26,9 +23,9 @@ function SearchResult() {
       >
         ‹ Go back
       </NavLink>
-      <CurrentWeather userLocation={location}></CurrentWeather>
+      <HomeLayout objectLocation={location}></HomeLayout>
     </div>
   );
 }
 
-export { SearchResult };
+export { SearchedLocation };
