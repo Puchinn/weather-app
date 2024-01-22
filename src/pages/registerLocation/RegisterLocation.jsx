@@ -1,18 +1,18 @@
-import { AutoComplete } from "../components/search/Autocomplete";
+import { AutoComplete } from "../../components/search/Autocomplete";
 import { useDispatch } from "react-redux";
-import { userSettingsActions } from "../redux/reducers/userSettings";
-import userSettingsLocalStorage from "../utils/userSettingsLocalStorage";
-import weatherServices from "../services/weather.services";
+import { userSettingsActions } from "../../redux/reducers/userSettings";
+import userSettingsLocalStorage from "../../utils/userSettingsLocalStorage";
+import weatherServices from "../../services/weather.services";
 
 function RegisterLocation() {
   const dispatch = useDispatch();
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const targetValue = e.target.queryText.value;
-    weatherServices.current(targetValue).then((res) => {
-      dispatch(userSettingsActions.setLocation(res.location));
-      userSettingsLocalStorage.setLocation(res.location);
+  const formAction = (event) => {
+    event.preventDefault();
+    const targetValue = formAction.target.queryText.value;
+    weatherServices.current(targetValue).then((data) => {
+      dispatch(userSettingsActions.setLocation(data.location));
+      userSettingsLocalStorage.setLocation(data.location);
     });
   };
 
@@ -27,7 +27,7 @@ function RegisterLocation() {
           Please, write your current location to continue. You can change it
           later!
         </p>
-        <AutoComplete formAction={onSubmit} placeholder="Barcelona, Spain">
+        <AutoComplete formAction={formAction} placeholder="Barcelona, Spain">
           <button
             type="submit"
             className="my-3 bg-heavy-primary-dark py-3 px-6 rounded-sm hover:outline outline-1"
