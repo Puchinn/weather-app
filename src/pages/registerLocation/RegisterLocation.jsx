@@ -8,7 +8,6 @@ function RegisterLocation() {
   const dispatch = useDispatch();
 
   const formAction = (event) => {
-    event.preventDefault();
     const targetValue = event.target.queryText.value;
     weatherServices.current(targetValue).then((data) => {
       dispatch(userSettingsActions.setLocation(data.location));
