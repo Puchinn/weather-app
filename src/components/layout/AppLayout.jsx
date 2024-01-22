@@ -6,9 +6,8 @@ import { AutoComplete } from "../search/Autocomplete";
 function AppLayout() {
   const navigate = useNavigate();
 
-  const formAction = (e) => {
-    e.preventDefault();
-    navigate(`/search/${e.target.queryText.value}`);
+  const formAction = (event) => {
+    navigate(`/search/${event.target.queryText.value}`);
   };
 
   return (
