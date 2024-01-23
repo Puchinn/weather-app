@@ -45,7 +45,7 @@ function SearchedLocation() {
   }
 
   return (
-    <div className="max-w-xl space-y-1 pb-5">
+    <div className="max-w-xl space-y-1 pb-5 px-3">
       {searchedData.map((result) => {
         return (
           <RecentlySearched
