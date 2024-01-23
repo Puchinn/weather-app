@@ -19,7 +19,11 @@ function SearchedLocation() {
       setSearchedData(data);
       setIsLoading(false);
       if (data.length === 1) {
-        dispatch(userSettingsActions.addToRecentlySearched(query));
+        dispatch(
+          userSettingsActions.addToRecentlySearched(
+            locationUtil.objectToString(data[0])
+          )
+        );
       }
     });
   }, [query, dispatch]);
