@@ -10,7 +10,7 @@ function ButtonOption({ setActiveUnit, unitValue, activeUnit }) {
   return (
     <button
       onClick={setActive}
-      className={`py-1 w-full ${background} rounded-lg`}
+      className={`py-1 px-1 w-full ${background} rounded-lg`}
     >
       {unitValue}
     </button>

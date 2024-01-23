@@ -5,7 +5,7 @@ function SearchPage() {
   const { recentlySearched } = useSelector((state) => state.userSettings);
 
   return (
-    <div>
+    <div className="p-3">
       <h1 className="italic text-xl pb-3">Recently searched</h1>
       <RecentlySearchedList recentlySearched={recentlySearched} />
     </div>
