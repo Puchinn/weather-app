@@ -6,7 +6,7 @@ function Card({ card = {} }) {
       <h2 className="text-xl">
         {icon} {title}
       </h2>
-      <p className="text-3xl ml-8">
+      <p className="text-xl xl:text-2xl xl:ml-8">
         {value} {unit}
       </p>
     </li>

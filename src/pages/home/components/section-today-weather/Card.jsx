@@ -17,7 +17,7 @@ function Card({ data = {} }) {
     : hourFormat.formatTo24Hours(data.time);
 
   return (
-    <li className="text-center space-y-2 rounded-md p-4 hover:bg-primary-dark-hover">
+    <li className="text-center space-y-2 rounded-md p-2 hover:bg-primary-dark-hover">
       <p className="text-sm">{formatedHour}</p>
       <p className="text-4xl ">{icon}</p>
       <p className="font-medium">

@@ -6,7 +6,7 @@ function SectionTodayWeather({ hoursArray = [] }) {
   ));
 
   return (
-    <div className="bg-light-primary-dark max-w-md p-5 my-2 space-y-1 rounded-lg">
+    <div className="bg-light-primary-dark max-w-md p-3 my-2  mx-auto space-y-1 rounded-lg">
       <p>Today&apos;s weather </p>
       <ul className="flex justify-around">{cards}</ul>
     </div>

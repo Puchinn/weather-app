@@ -21,8 +21,8 @@ function HomeLayout({ objectLocation }) {
   if (isLoadingData) return <h1>loading...</h1>;
 
   return (
-    <div className="grid grid-cols-12 gap-x-10 pb-10">
-      <div className="col-span-7">
+    <div className="sm:grid sm:grid-cols-12 gap-x-5 xl:gap-x-10 pb-10 p-3">
+      <div className="col-span-12 lg:col-span-7">
         <h1 className=" text-light-text">{locationAndDate}</h1>
         <SectionCurrentWeatherInfo currentData={currentData} />
         <SectionCurrentWeatherCards cards={cardsList} />
@@ -30,7 +30,7 @@ function HomeLayout({ objectLocation }) {
           Last update: {lastUpdated}
         </p>
       </div>
-      <div className="col-span-5 space-y-5">
+      <div className="col-span-12 lg:col-span-5 space-y-4 lg:space-y-8">
         <SectionTodayWeather hoursArray={hoursArray} />
         <SectionForecast forecastData={forecastData} />
         <Clock initialTime={currentData.current.time} />

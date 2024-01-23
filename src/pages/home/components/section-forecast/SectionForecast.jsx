@@ -6,7 +6,7 @@ function SectionForecast({ forecastData = [] }) {
   ));
 
   return (
-    <div className="max-w-lg py-2">
+    <div className="max-w-lg py-2  mx-auto">
       <p className="font-bold">3-Day Forecast</p>
       <ul>{cards}</ul>
     </div>

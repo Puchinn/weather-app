@@ -17,16 +17,16 @@ function Card({ forecastData = {} }) {
   });
 
   return (
-    <li className="flex justify-between items-center border-b border-b-light-primary-dark p-3 text-lg">
+    <li className="flex justify-between items-center lg:text-lg border-b border-b-light-primary-dark p-1 text-base">
       <p>{dayName}</p>
-      <p>
-        <span className="text-2xl">{icon}</span> {dayCondition}
+      <p className="text-center">
+        <span className="text-xl">{icon}</span> {dayCondition}
       </p>
-      <p>
+      <p className="flex flex-col sm:block">
         <span className="font-bold">
-          {maxTemp} {unit}
+          {maxTemp} {unit} /{" "}
         </span>
-        /{minTemp} {unit}
+        {minTemp} {unit}
       </p>
     </li>
   );

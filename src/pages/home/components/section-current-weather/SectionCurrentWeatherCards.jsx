@@ -5,7 +5,7 @@ function SectionCurrentWeatherCards({ cards = [] }) {
     <Card key={card.title} card={card}></Card>
   ));
 
-  return <ul className="grid grid-cols-2 gap-5 max-w-2xl">{cardsItems}</ul>;
+  return <ul className="grid sm:grid-cols-2 gap-2 max-w-2xl">{cardsItems}</ul>;
 }
 
 export { SectionCurrentWeatherCards };
