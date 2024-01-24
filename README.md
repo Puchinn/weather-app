@@ -1,12 +1,21 @@
-# Weather App - (work in progress)
+# Weather App 🌥️
 
-## Technologies:
+This project shows you the current weather at your location, a forecast for the next 3 days and what the weather will be like in the next few hours. It allows you to search for other locations and see their details, as well as to configure the units of the displayed values such as temperature, distances, pressure, etc.
 
-- React
-- TailwindCSS
+website link : https://weather-app-puchinn.vercel.app/
 
-## Design idea
+### Technologies:
 
-![Captura de pantalla 2024-01-05 193426](https://github.com/Puchinn/weather-app/assets/102445616/df671a75-cdf7-427d-89c4-877412051f50)
+- [React](https://react.dev/)
+- [React Router](https://reactrouter.com/en/main)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [TailwindCSS](https://tailwindcss.com/)
 
-![Captura de pantalla 2024-01-05 193525](https://github.com/Puchinn/weather-app/assets/102445616/db81e91f-99f6-4d7d-b666-91e34ec11ab5)
+### Data
+
+- [Weather Api](https://www.weatherapi.com/)
+
+### Screenshots
+
+![web-site-screen](images/693shots_so.png)
+![mobile-screen](images/692shots_so.png)
