@@ -19,7 +19,9 @@ function Clock({ initialTime }) {
     return () => clearInterval(intervalId);
   }, [initialTime]);
 
-  const formattedTime = time.toLocaleTimeString().replaceAll(":", " | ");
+  const regex = /(\d{2}:\d{2}:\d{2})/;
+  const formattedTime = time.toString().match(regex)[1].replaceAll(":", " | ");
+
   return (
     <div className="py-14 max-w-sm mx-auto bg-light-primary-dark rounded-md">
       <p className="text-5xl text-center">

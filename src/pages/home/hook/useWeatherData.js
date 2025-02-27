@@ -30,9 +30,9 @@ function useWeatherData({ objectLocation = {} }) {
 
   if (isLoadingData) return { isLoadingData };
 
-  const currentHour = weatherData.currentData.current.time
-    .substring(11)
-    .split(":")[0];
+  const currentHour = Math.abs(
+    weatherData.currentData.current.time.substring(11).split(":")[0]
+  );
 
   const cardsList = currentDataToCardsList({
     ...weatherData.currentData.current,
